@@ -22,10 +22,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                         <TextView
-                            android:id="@+id/tv_full_name"
+                            android:id="@+id/tv_name"
                             style="@style/FullName"
                             android:layout_weight="2"
-                            android:text="@string/full_name" />
+                            android:text="@string/name" />
 
                         <TextView
                             android:id="@+id/tv_username"
@@ -76,11 +76,11 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tv_office"
+                            android:id="@+id/tv_company"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:text="@string/office" />
+                            android:text="@string/company" />
                 </TableRow>
 
                 <Button

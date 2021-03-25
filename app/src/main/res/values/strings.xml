@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">KotlinGithubUser</string>
     <string name="username">username</string>
-    <string name="full_name">full_name</string>
     <string name="location">location</string>
-    <string name="office">office</string>
+    <string name="company">company</string>
     <string name="more_details">More Details</string>
+    <string name="name">name</string>
 </resources>
