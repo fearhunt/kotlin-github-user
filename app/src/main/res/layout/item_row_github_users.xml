@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    style="@style/Card">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_item_photo"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_gravity="center_vertical"
+            tools:src="@color/yellow_700" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_item_photo"
+            android:orientation="vertical">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                        <TextView
+                            android:id="@+id/tv_full_name"
+                            style="@style/FullName"
+                            android:layout_weight="2"
+                            android:text="@string/full_name" />
+
+                        <TextView
+                            android:id="@+id/tv_username"
+                            android:layout_weight="3"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/username" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp">
+                        <LinearLayout
+                            android:layout_weight="13"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_location" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/location" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp">
+                        <LinearLayout
+                            android:layout_weight="13"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_office" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_office"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/office" />
+                </TableRow>
+
+                <Button
+                    android:id="@+id/btn_details"
+                    android:layout_marginVertical="12dp"
+                    android:minHeight="24dp"
+                    style="@style/Button"
+                    android:text="@string/more_details" />
+        </LinearLayout>
+</LinearLayout>
