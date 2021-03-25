@@ -22,13 +22,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                         <TextView
-                            android:id="@+id/tv_name"
+                            android:id="@+id/tv_item_name"
                             style="@style/FullName"
                             android:layout_weight="2"
                             android:text="@string/name" />
 
                         <TextView
-                            android:id="@+id/tv_username"
+                            android:id="@+id/tv_item_username"
                             android:layout_weight="3"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
@@ -52,7 +52,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tv_location"
+                            android:id="@+id/tv_item_location"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
@@ -76,7 +76,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tv_company"
+                            android:id="@+id/tv_item_company"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
@@ -84,7 +84,7 @@
                 </TableRow>
 
                 <Button
-                    android:id="@+id/btn_details"
+                    android:id="@+id/btn_item_details"
                     android:layout_marginVertical="12dp"
                     android:minHeight="24dp"
                     style="@style/Button"

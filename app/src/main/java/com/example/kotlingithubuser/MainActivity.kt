@@ -3,18 +3,26 @@ package com.example.kotlingithubuser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var rvGithubUsers: RecyclerView
     private var list: ArrayList<GithubUser> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        rvGithubUsers = findViewById(R.id.rv_github_users)
+        rvGithubUsers.setHasFixedSize(true)
+
         addGithubUserData()
+        showRecyclerList()
     }
 
     private fun addGithubUserData() {
@@ -25,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             for (index in 0 until userArray.length()) {
                 val user = userArray.getJSONObject(index)
                 val githubUser = GithubUser()
+                //  Log.i("User Name", user.getString("name"))
 
                 githubUser.name = user.getString("name")
                 githubUser.username = user.getString("username")
@@ -35,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 githubUser.following = user.getInt("following")
                 githubUser.follower = user.getInt("follower")
                 githubUser.follower = user.getInt("follower")
-//                Log.i("User Name", user.getString("name"))
 
                 list.add(githubUser)
             }
@@ -43,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         catch (e: JSONException) {
             e.printStackTrace()
         }
-
-        // Add adapter
     }
 
     private fun loadJSONFromAsset(): String {
@@ -67,5 +73,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         return json
+    }
+
+    private fun showRecyclerList() {
+        rvGithubUsers.layoutManager = LinearLayoutManager(this)
+        val listGithubUserAdapter = ListGithubUserAdapter(list)
+        rvGithubUsers.adapter = listGithubUserAdapter
     }
 }
