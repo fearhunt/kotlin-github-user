@@ -2,7 +2,6 @@ package com.example.kotlingithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONException
@@ -17,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar!!.title = "Github User App"
 
         rvGithubUsers = findViewById(R.id.rv_github_users)
         rvGithubUsers.setHasFixedSize(true)
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
             for (index in 0 until userArray.length()) {
                 val user = userArray.getJSONObject(index)
                 val githubUser = GithubUser()
-                //  Log.i("User Name", user.getString("name"))
 
                 githubUser.name = user.getString("name")
                 githubUser.username = user.getString("username")

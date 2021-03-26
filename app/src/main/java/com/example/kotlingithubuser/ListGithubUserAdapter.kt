@@ -1,7 +1,6 @@
 package com.example.kotlingithubuser
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import de.hdodenhof.circleimageview.CircleImageView
 
 class ListGithubUserAdapter(private val listGithubUsers: ArrayList<GithubUser>) : RecyclerView.Adapter<ListGithubUserAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,6 +34,11 @@ class ListGithubUserAdapter(private val listGithubUsers: ArrayList<GithubUser>) 
         holder.imgPhoto.setImageResource(img)
         holder.tvLocation.text = githubUser.location
         holder.tvCompany.text = githubUser.company
+        holder.btnDetail.setOnClickListener {
+            val intent = Intent(context, GithubUserDetailActivity::class.java)
+            intent.putExtra(GithubUserDetailActivity.EXTRA_GITHUB_USER, githubUser)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

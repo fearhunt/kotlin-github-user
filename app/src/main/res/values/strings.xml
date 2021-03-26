@@ -5,4 +5,11 @@
     <string name="company">company</string>
     <string name="more_details">More Details</string>
     <string name="name">name</string>
+    <string name="user_followers">0</string>
+    <string name="dot">•</string>
+    <string name="followers">followers</string>
+    <string name="user_following">0</string>
+    <string name="following">following</string>
+    <string name="user_repositories">0</string>
+    <string name="repositories">repositories</string>
 </resources>
