@@ -17,7 +17,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
         val githubUser = intent.getParcelableExtra<GithubUser>(EXTRA_GITHUB_USER) as GithubUser
         val img = resources.getIdentifier(githubUser.avatar, "drawable", packageName)
 
-        supportActionBar!!.title = githubUser.username + "'s Detail"
+        supportActionBar?.title = githubUser.username + "'s Detail"
 
         val tvName: TextView = findViewById(R.id.tv_item_name)
         val tvUsername: TextView = findViewById(R.id.tv_item_username)

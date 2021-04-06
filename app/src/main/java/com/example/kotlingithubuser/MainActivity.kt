@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar!!.title = "Github User App"
+        supportActionBar?.title = "Github User App"
 
         rvGithubUsers = findViewById(R.id.rv_github_users)
         rvGithubUsers.setHasFixedSize(true)
