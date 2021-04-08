@@ -27,11 +27,10 @@ class ListGithubUserAdapter(private val listGithubUsers: ArrayList<GithubUser>) 
     override fun onBindViewHolder(holder: ListViewHolder, index: Int) {
         val githubUser = listGithubUsers[index]
         val context = holder.itemView.context
-        val img = context.resources.getIdentifier(githubUser.avatar, "drawable", context.packageName)
+//        val img = context.resources.getIdentifier(githubUser.avatar, "drawable", context.packageName)
 
-        holder.tvName.text = githubUser.name
         holder.tvUsername.text = githubUser.username
-        holder.imgPhoto.setImageResource(img)
+//        holder.imgPhoto.setImageResource(img)
         holder.tvLocation.text = githubUser.location
         holder.tvCompany.text = githubUser.company
         holder.btnDetail.setOnClickListener {

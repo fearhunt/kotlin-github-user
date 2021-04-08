@@ -2,81 +2,127 @@ package com.example.kotlingithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import org.json.JSONException
+import com.example.kotlingithubuser.databinding.ActivityMainBinding
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.AsyncHttpResponseHandler
+import cz.msebera.android.httpclient.Header
+import org.json.JSONArray
 import org.json.JSONObject
-import java.io.IOException
-import java.nio.charset.Charset
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var rvGithubUsers: RecyclerView
-    private var list: ArrayList<GithubUser> = arrayListOf()
+    private lateinit var binding: ActivityMainBinding
+    private val list: ArrayList<GithubUser> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.title = "Github User App"
 
-        rvGithubUsers = findViewById(R.id.rv_github_users)
-        rvGithubUsers.setHasFixedSize(true)
+        binding.rvGithubUsers.setHasFixedSize(true)
 
+        binding.progressBar.visibility = View.VISIBLE
         addGithubUserData()
         showRecyclerList()
+        binding.progressBar.visibility = View.INVISIBLE
     }
 
     private fun addGithubUserData() {
-        try {
-            val obj = JSONObject(loadJSONFromAsset())
-            val userArray = obj.getJSONArray("users")
+        val client = AsyncHttpClient()
+        client.addHeader("Authorization", "token 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")
+        client.addHeader("User-Agent", "request")
 
-            for (index in 0 until userArray.length()) {
-                val user = userArray.getJSONObject(index)
-                val githubUser = GithubUser()
+        val url = "https://api.github.com/users"
 
-                githubUser.name = user.getString("name")
-                githubUser.username = user.getString("username")
-                githubUser.avatar = user.getString("avatar")
-                githubUser.company = user.getString("company")
-                githubUser.location = user.getString("location")
-                githubUser.repository = user.getInt("repository")
-                githubUser.following = user.getInt("following")
-                githubUser.follower = user.getInt("follower")
-                githubUser.follower = user.getInt("follower")
+        client.get(url, object: AsyncHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
+                // called when response HTTP status is "200 OK"
 
-                list.add(githubUser)
+                val res = String(responseBody)
+
+                try {
+                    val resArr = JSONArray(res)
+
+                    for (i in 0 until resArr.length()) {
+                        val resObj = resArr.getJSONObject(i)
+
+                        val username = resObj.getString("login")
+
+                        fetchGithubUserDataDetail(username, client)
+                    }
+                }
+                catch (e: Exception) {
+                    Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
             }
-        }
-        catch (e: JSONException) {
-            e.printStackTrace()
-        }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>, responseBody: ByteArray, error: Throwable) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+
+                showFailureFetchError(statusCode, error)
+            }
+        })
     }
 
-    private fun loadJSONFromAsset(): String {
-        val json: String?
+    private fun fetchGithubUserDataDetail(username: String, client: AsyncHttpClient) {
+        val detailProfileURL = "https://api.github.com/users/$username"
 
-        try {
-            val fileStream = assets.open("githubuser.json")
-            val size = fileStream.available()
-            val buffer = ByteArray(size)
-            val charset: Charset = Charsets.UTF_8
+        client.get(detailProfileURL, object: AsyncHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
+                // called when response HTTP status is "200 OK"
 
-            fileStream.read(buffer)
-            fileStream.close()
+                val res = String(responseBody)
 
-            json = String(buffer, charset)
+                try {
+                    val resObj = JSONObject(res)
+
+                    val githubUser = GithubUser()
+
+                    githubUser.username = resObj.getString("login")
+                    githubUser.email = resObj.getString("email")
+                    githubUser.avatar_url = resObj.getString("avatar_url")
+                    githubUser.company = resObj.getString("company")
+                    githubUser.location = resObj.getString("location")
+                    githubUser.public_repos = resObj.getInt("public_repos")
+                    githubUser.following = resObj.getInt("following")
+                    githubUser.followers = resObj.getInt("followers")
+
+                    list.add(githubUser)
+                }
+                catch (e: Exception) {
+                    Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>, responseBody: ByteArray, error: Throwable) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+
+                showFailureFetchError(statusCode, error)
+            }
+        })
+    }
+
+    private fun showFailureFetchError(statusCode: Int, error: Throwable) {
+        val errorMessage = when (statusCode) {
+            401 -> "$statusCode : Bad Request"
+            403 -> "$statusCode : Forbidden"
+            404 -> "$statusCode : Not Found"
+            else -> "$statusCode : ${error.message}"
         }
-        catch (e: IOException) {
-            e.printStackTrace()
-            return ""
-        }
 
-        return json
+        Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun showRecyclerList() {
-        rvGithubUsers.layoutManager = LinearLayoutManager(this)
+        binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
         val listGithubUserAdapter = ListGithubUserAdapter(list)
-        rvGithubUsers.adapter = listGithubUserAdapter
+        binding.rvGithubUsers.adapter = listGithubUserAdapter
     }
 }

@@ -19,17 +19,16 @@ class GithubUserDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val githubUser = intent.getParcelableExtra<GithubUser>(EXTRA_GITHUB_USER) as GithubUser
-        val img = resources.getIdentifier(githubUser.avatar, "drawable", packageName)
+//        val img = resources.getIdentifier(githubUser.avatar, "drawable", packageName)
 
         supportActionBar?.title = githubUser.username + "'s Detail"
 
-        binding.tvItemName.text = githubUser.name
         binding.tvItemUsername.text = githubUser.username
-        binding.imgItemPhoto.setImageResource(img)
+//        binding.imgItemPhoto.setImageResource(img)
         binding.tvItemLocation.text = githubUser.location
         binding.tvItemCompany.text = githubUser.company
-        binding.tvItemFollowers.text = (githubUser.follower).toString()
+        binding.tvItemFollowers.text = (githubUser.followers).toString()
         binding.tvItemFollowing.text = (githubUser.following).toString()
-        binding.tvItemRepositories.text = (githubUser.repository).toString()
+        binding.tvItemRepositories.text = (githubUser.public_repos).toString()
     }
 }
