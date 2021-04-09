@@ -8,6 +8,9 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
     defaultConfig {
         applicationId "com.example.kotlingithubuser"
         minSdkVersion 16
@@ -23,6 +26,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

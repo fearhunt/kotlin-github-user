@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addGithubUserData() {
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
         client.addHeader("User-Agent", "request")
 
         val url = "https://api.github.com/users"
@@ -94,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                     githubUser.followers = resObj.getInt("followers")
 
                     list.add(githubUser)
+                    showRecyclerList()
                 }
                 catch (e: Exception) {
                     Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
