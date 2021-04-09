@@ -15,16 +15,24 @@ import org.json.JSONObject
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var adapter: ListGithubUserAdapter
     private lateinit var binding: ActivityMainBinding
+
     private val list: ArrayList<GithubUser> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         supportActionBar?.title = "Github User App"
 
         binding.rvGithubUsers.setHasFixedSize(true)
+
+        adapter = ListGithubUserAdapter()
+
+        binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
+        binding.rvGithubUsers.adapter = adapter
 
         addGithubUserData()
     }
@@ -86,14 +94,16 @@ class MainActivity : AppCompatActivity() {
                     githubUser.username = resObj.getString("login")
                     githubUser.email = resObj.getString("email")
                     githubUser.avatar_url = resObj.getString("avatar_url")
-                    githubUser.company = if (resObj.getString("company") == null) resObj.getString("company") else "-"
-                    githubUser.location = if (resObj.getString("location") == null) resObj.getString("location") else "-"
+//                    githubUser.company = if (resObj.getString("company") == null) resObj.getString("company") else "-"
+                    githubUser.company = resObj.getString("company")
+//                    githubUser.location = if (resObj.getString("location") == null) resObj.getString("location") else "-"
+                    githubUser.location = resObj.getString("location")
                     githubUser.public_repos = resObj.getInt("public_repos")
                     githubUser.following = resObj.getInt("following")
                     githubUser.followers = resObj.getInt("followers")
 
                     list.add(githubUser)
-                    showRecyclerList()
+                    adapter.setData(list)
                 }
                 catch (e: Exception) {
                     Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
@@ -124,9 +134,9 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showRecyclerList() {
-        binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
-        val listGithubUserAdapter = ListGithubUserAdapter(list)
-        binding.rvGithubUsers.adapter = listGithubUserAdapter
-    }
+//    private fun showRecyclerList() {
+//        binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
+//        val listGithubUserAdapter = ListGithubUserAdapter(list)
+//        binding.rvGithubUsers.adapter = listGithubUserAdapter
+//    }
 }
