@@ -12,4 +12,6 @@
     <string name="following">following</string>
     <string name="user_repositories">0</string>
     <string name="repositories">repositories</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
 </resources>

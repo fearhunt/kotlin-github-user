@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
                     githubUser.username = resObj.getString("login")
                     githubUser.email = resObj.getString("email")
                     githubUser.avatar_url = resObj.getString("avatar_url")
-                    githubUser.company = if (resObj.getString("company") != "null") resObj.getString("company") else "-"
-                    githubUser.location = if (resObj.getString("location") != "null") resObj.getString("location") else "-"
+                    githubUser.company = if (resObj.getString("company") == null) resObj.getString("company") else "-"
+                    githubUser.location = if (resObj.getString("location") == null) resObj.getString("location") else "-"
                     githubUser.public_repos = resObj.getInt("public_repos")
                     githubUser.following = resObj.getInt("following")
                     githubUser.followers = resObj.getInt("followers")

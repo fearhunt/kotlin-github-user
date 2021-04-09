@@ -6,12 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GithubUser (
-    var username: String = "",
-    var email: String = "",
-    var avatar_url: String = "",
-    var company: String = "",
-    var location: String = "",
-    var public_repos: Int = 0,
-    var following: Int = 0,
-    var followers: Int = 0
+    var username: String? = null,
+    var email: String? = null,
+    var avatar_url: String? = null,
+    var company: String? = null,
+    var location: String? = null,
+    var public_repos: Int? = null,
+    var following: Int? = null,
+    var followers: Int? = null
 ) : Parcelable
