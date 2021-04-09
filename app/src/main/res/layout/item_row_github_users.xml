@@ -22,12 +22,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                         <TextView
-                            android:id="@+id/tv_item_name"
-                            style="@style/FullName"
-                            android:layout_width="wrap_content"
-                            android:text="@string/name" />
-
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
@@ -36,11 +30,15 @@
 
                         <TextView
                             android:id="@+id/tv_item_username"
+                            style="@style/UserName"
+                            android:text="@string/username" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
                             android:layout_gravity="center_vertical"
-                            android:textSize="11sp"
-                            android:text="@string/username" />
+                            android:text="@string/dot" />
                 </LinearLayout>
 
                 <TableRow

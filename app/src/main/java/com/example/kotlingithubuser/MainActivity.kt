@@ -26,13 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvGithubUsers.setHasFixedSize(true)
 
-        binding.progressBar.visibility = View.VISIBLE
         addGithubUserData()
-        showRecyclerList()
-        binding.progressBar.visibility = View.INVISIBLE
     }
 
     private fun addGithubUserData() {
+        binding.progressBar.visibility = View.VISIBLE
+
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
         client.addHeader("User-Agent", "request")
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
                         val username = resObj.getString("login")
 
-                        fetchGithubUserDataDetail(username, client)
+                        fetchGithubUserDataDetail(username, client, i)
                     }
                 }
                 catch (e: Exception) {
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun fetchGithubUserDataDetail(username: String, client: AsyncHttpClient) {
+    private fun fetchGithubUserDataDetail(username: String, client: AsyncHttpClient, index: Int) {
         val detailProfileURL = "https://api.github.com/users/$username"
 
         client.get(detailProfileURL, object: AsyncHttpResponseHandler() {
@@ -87,8 +86,8 @@ class MainActivity : AppCompatActivity() {
                     githubUser.username = resObj.getString("login")
                     githubUser.email = resObj.getString("email")
                     githubUser.avatar_url = resObj.getString("avatar_url")
-                    githubUser.company = resObj.getString("company")
-                    githubUser.location = resObj.getString("location")
+                    githubUser.company = if (resObj.getString("company") != "null") resObj.getString("company") else "-"
+                    githubUser.location = if (resObj.getString("location") != "null") resObj.getString("location") else "-"
                     githubUser.public_repos = resObj.getInt("public_repos")
                     githubUser.following = resObj.getInt("following")
                     githubUser.followers = resObj.getInt("followers")
@@ -108,6 +107,10 @@ class MainActivity : AppCompatActivity() {
                 showFailureFetchError(statusCode, error)
             }
         })
+
+        if (index == 29) {
+            binding.progressBar.visibility = View.INVISIBLE
+        }
     }
 
     private fun showFailureFetchError(statusCode: Int, error: Throwable) {

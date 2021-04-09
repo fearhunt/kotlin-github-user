@@ -2,8 +2,8 @@ package com.example.kotlingithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.databinding.ActivityGithubUserDetailBinding
 
 class GithubUserDetailActivity : AppCompatActivity() {
@@ -19,12 +19,15 @@ class GithubUserDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val githubUser = intent.getParcelableExtra<GithubUser>(EXTRA_GITHUB_USER) as GithubUser
-//        val img = resources.getIdentifier(githubUser.avatar, "drawable", packageName)
 
         supportActionBar?.title = githubUser.username + "'s Detail"
 
+        Glide.with(binding.imgItemPhoto)
+            .load(githubUser.avatar_url)
+            .apply(RequestOptions().override(72, 72))
+            .into(binding.imgItemPhoto)
+
         binding.tvItemUsername.text = githubUser.username
-//        binding.imgItemPhoto.setImageResource(img)
         binding.tvItemLocation.text = githubUser.location
         binding.tvItemCompany.text = githubUser.company
         binding.tvItemFollowers.text = (githubUser.followers).toString()
