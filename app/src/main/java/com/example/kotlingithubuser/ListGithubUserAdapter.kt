@@ -21,13 +21,8 @@ class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListVie
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val tvUsername: TextView = itemView.findViewById(R.id.tv_item_username)
-//        val tvLocation: TextView = itemView.findViewById(R.id.tv_item_location)
-//        val tvCompany: TextView = itemView.findViewById(R.id.tv_item_company)
-//        val imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
-//        val btnDetail: Button = itemView.findViewById(R.id.btn_item_details)
-
         private val binding = ItemRowGithubUsersBinding.bind(itemView)
+
         fun bind(githubUser: GithubUser) {
             with(itemView) {
                 Glide.with(context)
@@ -54,22 +49,6 @@ class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListVie
 
     override fun onBindViewHolder(holder: ListViewHolder, index: Int) {
         holder.bind(mData[index])
-//        val githubUser = listGithubUsers[index]
-//        val context = holder.itemView.context
-//
-//        Glide.with(holder.itemView.context)
-//            .load(githubUser.avatar_url)
-//            .apply(RequestOptions().override(72, 72))
-//            .into(holder.imgPhoto)
-//
-//        holder.tvUsername.text = githubUser.username
-//        holder.tvLocation.text = githubUser.location
-//        holder.tvCompany.text = githubUser.company
-//        holder.btnDetail.setOnClickListener {
-//            val intent = Intent(context, GithubUserDetailActivity::class.java)
-//            intent.putExtra(GithubUserDetailActivity.EXTRA_GITHUB_USER, githubUser)
-//            context.startActivity(intent)
-//        }
     }
 
     override fun getItemCount(): Int {

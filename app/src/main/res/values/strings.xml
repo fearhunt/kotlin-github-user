@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KotlinGithubUser</string>
+    <string name="app_name">Kotlin Github User</string>
     <string name="username">username</string>
     <string name="location">location</string>
     <string name="company">company</string>
