@@ -8,6 +8,15 @@
         <item name="android:layout_marginVertical">8dp</item>
         <item name="android:background">@drawable/border</item>
     </style>
+
+    <style name="ConnectionList">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:layout_marginHorizontal">6dp</item>
+        <item name="android:layout_marginVertical">4dp</item>
+    </style>
     
     <style name="UserName">
         <item name="android:layout_width">wrap_content</item>

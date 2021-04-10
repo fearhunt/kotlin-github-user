@@ -2,6 +2,8 @@ package com.example.kotlingithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var isDataFetched: Boolean = false
+
         supportActionBar?.title = "Github User App"
 
         binding.rvGithubUsers.setHasFixedSize(true)
@@ -41,8 +45,14 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.setUser()
         mainViewModel.getUser().observe(this, Observer { githubUser ->
-            if (githubUser != null) {
+            if (githubUser != null && !isDataFetched) {
                 adapter.setData(githubUser)
+                isDataFetched = true
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    recreate()
+                }, 500)
+
                 showLoading(false)
             }
         })
