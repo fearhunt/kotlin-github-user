@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var isDataFetched: Boolean = false
-
         supportActionBar?.title = "Github User App"
 
         binding.rvGithubUsers.setHasFixedSize(true)
@@ -45,14 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.setUser()
         mainViewModel.getUser().observe(this, Observer { githubUser ->
-            if (githubUser != null && !isDataFetched) {
+            if (githubUser != null) {
                 adapter.setData(githubUser)
-                isDataFetched = true
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    recreate()
-                }, 500)
-
                 showLoading(false)
             }
         })
