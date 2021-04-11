@@ -2,21 +2,11 @@ package com.example.kotlingithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlingithubuser.databinding.ActivityMainBinding
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpResponseHandler
-import cz.msebera.android.httpclient.Header
-import org.json.JSONArray
-import org.json.JSONObject
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ListGithubUserAdapter
@@ -33,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvGithubUsers.setHasFixedSize(true)
 
         adapter = ListGithubUserAdapter()
+        adapter.notifyDataSetChanged()
 
         binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
         binding.rvGithubUsers.adapter = adapter

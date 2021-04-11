@@ -8,14 +8,14 @@
     tools:context=".FollowersFragment">
 
     <TextView
-        android:id="@+id/tv_title_followers"
+        android:id="@+id/tv_title_connection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
         android:layout_marginHorizontal="8dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:text="@string/followers" />
+        android:text="@string/followers_list" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

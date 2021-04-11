@@ -31,4 +31,11 @@
         <item name="android:background">@drawable/border</item>
         <item name="android:textSize">12dp</item>
     </style>
+
+    <style name="Link">
+        <item name="android:autoLink">web</item>
+        <item name="android:linksClickable">true</item>
+        <item name="android:textColorLink">@color/blue_700</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

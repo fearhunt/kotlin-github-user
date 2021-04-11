@@ -14,4 +14,8 @@
     <string name="repositories">repositories</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
+    <string name="followers_list">Followers List</string>
+    <string name="following_list">Following List</string>
+    <string name="email">email</string>
+    <string name="url">url</string>
 </resources>

@@ -20,9 +20,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".GithubUserDetailActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

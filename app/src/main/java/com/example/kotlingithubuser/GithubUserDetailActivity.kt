@@ -1,13 +1,11 @@
 package com.example.kotlingithubuser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.StringRes
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.databinding.ActivityGithubUserDetailBinding
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class GithubUserDetailActivity : AppCompatActivity() {
@@ -34,7 +32,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
 
         Glide.with(binding.imgItemPhoto)
             .load(githubUser.avatar_url)
-            .apply(RequestOptions().override(72, 72))
+            .apply(RequestOptions().override(100, 100))
             .into(binding.imgItemPhoto)
 
         binding.tvItemUsername.text = githubUser.username
@@ -45,13 +43,12 @@ class GithubUserDetailActivity : AppCompatActivity() {
         binding.tvItemRepositories.text = (githubUser.public_repos).toString()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        TabLayoutMediator(tabs, viewPager) { tab, position ->
+        sectionsPagerAdapter.setUsername(githubUser.username)
+        binding.viewPager.adapter = sectionsPagerAdapter
+
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
-
     }
 }
