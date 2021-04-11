@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
+import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,12 +17,15 @@ class MainViewModel : ViewModel() {
 
     val githubUsers = MutableLiveData<ArrayList<GithubUser>>()
 
-    fun setUser() {
+    fun setUser(query: String, url: String) {
         val client = AsyncHttpClient()
+        val params = RequestParams()
         client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
         client.addHeader("User-Agent", "request")
 
-        val url = "https://api.github.com/users"
+        if (query != "") {
+            params.put("q", query)
+        }
 
         client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
