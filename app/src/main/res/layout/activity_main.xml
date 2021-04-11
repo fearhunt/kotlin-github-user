@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:iconifiedByDefault="false"
         android:layout_marginBottom="12dp"
-        android:queryHint="Search Github User Here" />
+        android:queryHint="@string/search_hint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

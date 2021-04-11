@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
-import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 import org.json.JSONObject
@@ -19,13 +18,8 @@ class MainViewModel : ViewModel() {
 
     fun setUser(query: String, url: String) {
         val client = AsyncHttpClient()
-        val params = RequestParams()
         client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
         client.addHeader("User-Agent", "request")
-
-        if (query != "") {
-            params.put("q", query)
-        }
 
         client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
@@ -34,18 +28,34 @@ class MainViewModel : ViewModel() {
                 val res = String(responseBody)
 
                 try {
-                    val resArr = JSONArray(res)
+                    if (query != "") {
+                        val resObjSearch = JSONObject(res)
 
-                    for (i in 0 until resArr.length()) {
-                        val resObj = resArr.getJSONObject(i)
+                        val resArr = resObjSearch.getJSONArray("items")
+                        val resTotalCount = resObjSearch.getInt("total_count")
 
-                        val username = resObj.getString("login")
+                        for (i in 0 until resArr.length()) {
+                            val resObj = resArr.getJSONObject(i)
 
-                        fetchGithubUserDataDetail(username, client, i)
+                            val username = resObj.getString("login")
+
+                            fetchGithubUserDataDetail(username, client, i, resTotalCount)
+                        }
+                    }
+                    else {
+                        val resArr = JSONArray(res)
+
+                        for (i in 0 until resArr.length()) {
+                            val resObj = resArr.getJSONObject(i)
+
+                            val username = resObj.getString("login")
+
+                            fetchGithubUserDataDetail(username, client, i, resArr.length())
+                        }
                     }
                 }
                 catch (e: Exception) {
-                    Log.d("Exception", e.message.toString())
+                    Log.e("Exception", e.message.toString())
                 }
             }
 
@@ -57,7 +67,7 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    private fun fetchGithubUserDataDetail(username: String, client: AsyncHttpClient, index: Int) {
+    private fun fetchGithubUserDataDetail(username: String, client: AsyncHttpClient, index: Int, totalCount: Int) {
         val detailProfileURL = "https://api.github.com/users/$username"
 
         client.get(detailProfileURL, object: AsyncHttpResponseHandler() {
@@ -82,12 +92,12 @@ class MainViewModel : ViewModel() {
 
                     list.add(githubUser)
 
-                    if (index == 29) {
+                    if ((index + 1) == totalCount) {
                         githubUsers.postValue(list)
                     }
                 }
                 catch (e: Exception) {
-                    Log.d("Exception", e.message.toString())
+                    Log.e("Exception", e.message.toString())
                 }
             }
 
@@ -111,6 +121,6 @@ class MainViewModel : ViewModel() {
             else -> "$statusCode : ${error.message}"
         }
 
-        Log.d("Exception", errorMessage)
+        Log.e("Exception", errorMessage)
     }
 }

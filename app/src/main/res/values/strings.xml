@@ -18,4 +18,6 @@
     <string name="following_list">Following List</string>
     <string name="email">email</string>
     <string name="url">url</string>
+    <string name="language_settings">Change Language Settings</string>
+    <string name="search_hint">Search Github User Here</string>
 </resources>

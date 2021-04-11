@@ -47,7 +47,7 @@ class GithubUserConnectionViewModel : ViewModel() {
                     githubUserConnection.postValue(list)
                 }
                 catch (e: Exception) {
-                    Log.d("Exception", e.message.toString())
+                    Log.e("Exception", e.message.toString())
                 }
             }
 
@@ -71,6 +71,6 @@ class GithubUserConnectionViewModel : ViewModel() {
             else -> "$statusCode : ${error.message}"
         }
 
-        Log.d("Exception", errorMessage)
+        Log.e("Exception", errorMessage)
     }
 }

@@ -1,7 +1,11 @@
 package com.example.kotlingithubuser
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.lifecycle.Observer
@@ -24,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.svUser.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    fetchUser(query, "https://api.github.com/search/users")
+                    fetchUser(query, "https://api.github.com/search/users?q=$query")
                 }
                 else {
                     fetchUser()
@@ -51,6 +55,20 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
         fetchUser()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_change_settings) {
+            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(mIntent)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun fetchUser(query: String = "", url: String = "https://api.github.com/users") {

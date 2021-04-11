@@ -1,7 +1,6 @@
 package com.example.kotlingithubuser
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +45,7 @@ class FollowersFragment : Fragment() {
 
         val username = arguments?.getString("username")
 
-        binding.tvTitleConnection.text = "$username's Followers"
+        binding.tvTitleConnection.text = username + " " + getString(R.string.followers_list)
 
         githubUserConnectionViewModel.setUserConnection(username.toString(), "followers")
         githubUserConnectionViewModel.getUser().observe(this, Observer { githubUserConnection ->
