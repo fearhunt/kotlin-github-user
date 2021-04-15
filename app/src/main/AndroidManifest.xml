@@ -26,5 +26,4 @@
             android:name=".GithubUserDetailActivity"
             android:parentActivityName=".MainActivity" />
     </application>
-
 </manifest>
