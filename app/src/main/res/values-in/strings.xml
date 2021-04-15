@@ -14,10 +14,14 @@
     <string name="repositories">repositori</string>
     <string name="tab_text_1">Pengikut</string>
     <string name="tab_text_2">Mengikuti</string>
-    <string name="followers_list">Daftar Pengikut</string>
-    <string name="following_list">Daftar Mengikuti</string>
+    <string name="followers_list">Daftar Pengikut %s</string>
+    <string name="following_list">Daftar Mengikuti %s</string>
     <string name="email">email</string>
     <string name="url">url</string>
     <string name="language_settings">Ubah Bahasa</string>
     <string name="search_hint">Cari Pengguna Github di sini</string>
+    <string name="welcome_text">Selamat Datang di Aplikasi Github User App!</string>
+    <string name="instruction_text">Masukkan nama user pada kolom pencarian untuk menjalankannya</string>
+    <string name="user_not_found">User dengan query %s tidak ditemukan</string>
+    <string name="connection_list">Daftar Koneksi</string>
 </resources>

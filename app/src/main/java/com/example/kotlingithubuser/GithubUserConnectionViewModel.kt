@@ -13,11 +13,15 @@ import java.lang.Exception
 class GithubUserConnectionViewModel : ViewModel() {
     private val list: ArrayList<GithubUserConnection> = arrayListOf()
 
-    val githubUserConnection = MutableLiveData<ArrayList<GithubUserConnection>>()
+    private val githubUserConnection = MutableLiveData<ArrayList<GithubUserConnection>>()
+    val isLoading = MutableLiveData<Boolean>()
+    val errorMessage = MutableLiveData<String>()
 
     fun setUserConnection(username: String, connection: String) {
+        isLoading.postValue(true)
+
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
+        client.addHeader("Authorization", "token ${BuildConfig.API_KEY}")
         client.addHeader("User-Agent", "request")
 
         val url = "https://api.github.com/users/$username/$connection"
@@ -37,14 +41,15 @@ class GithubUserConnectionViewModel : ViewModel() {
                         val githubUserConnection = GithubUserConnection()
 
                         githubUserConnection.username = resObj.getString("login")
-                        githubUserConnection.repos_url = resObj.getString("repos_url")
-                        githubUserConnection.avatar_url = resObj.getString("avatar_url")
-                        githubUserConnection.html_url = resObj.getString("html_url")
+                        githubUserConnection.reposUrl = resObj.getString("repos_url")
+                        githubUserConnection.avatarUrl = resObj.getString("avatar_url")
+                        githubUserConnection.htmlUrl = resObj.getString("html_url")
 
                         list.add(githubUserConnection)
                     }
 
                     githubUserConnection.postValue(list)
+                    isLoading.postValue(false)
                 }
                 catch (e: Exception) {
                     Log.e("Exception", e.message.toString())
@@ -72,5 +77,7 @@ class GithubUserConnectionViewModel : ViewModel() {
         }
 
         Log.e("Exception", errorMessage)
+        isLoading.postValue(false)
+        this.errorMessage.postValue(errorMessage)
     }
 }

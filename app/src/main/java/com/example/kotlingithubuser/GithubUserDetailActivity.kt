@@ -31,7 +31,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
         supportActionBar?.title = githubUser.username + "'s Detail"
 
         Glide.with(binding.imgItemPhoto)
-            .load(githubUser.avatar_url)
+            .load(githubUser.avatarUrl)
             .apply(RequestOptions().override(100, 100))
             .into(binding.imgItemPhoto)
 
@@ -40,7 +40,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
         binding.tvItemCompany.text = githubUser.company
         binding.tvItemFollowers.text = (githubUser.followers).toString()
         binding.tvItemFollowing.text = (githubUser.following).toString()
-        binding.tvItemRepositories.text = (githubUser.public_repos).toString()
+        binding.tvItemRepositories.text = (githubUser.publicRepos).toString()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         sectionsPagerAdapter.setUsername(githubUser.username)

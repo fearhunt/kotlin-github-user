@@ -4,32 +4,19 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
-        <item name="android:layout_marginHorizontal">12dp</item>
-        <item name="android:layout_marginVertical">8dp</item>
         <item name="android:background">@drawable/border</item>
     </style>
 
-    <style name="ConnectionList">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingHorizontal">8dp</item>
-        <item name="android:paddingVertical">4dp</item>
-        <item name="android:layout_marginHorizontal">6dp</item>
-        <item name="android:layout_marginVertical">4dp</item>
-    </style>
-    
     <style name="UserName">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Button">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">fill_parent</item>
         <item name="android:background">@drawable/border</item>
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Link">

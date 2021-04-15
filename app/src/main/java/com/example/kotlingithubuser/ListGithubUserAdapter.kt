@@ -10,12 +10,15 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.databinding.ItemRowGithubUsersBinding
 
 class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListViewHolder>() {
-    private val mData = ArrayList<GithubUser>()
+    private var mData = ArrayList<GithubUser>()
 
     fun setData(items: ArrayList<GithubUser>) {
-        mData.clear()
-        mData.addAll(items)
+        mData = items
         notifyDataSetChanged()
+    }
+
+    fun clearData() {
+        mData.clear()
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,7 +27,7 @@ class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListVie
         fun bind(githubUser: GithubUser) {
             with(itemView) {
                 Glide.with(context)
-                    .load(githubUser.avatar_url)
+                    .load(githubUser.avatarUrl)
                     .apply(RequestOptions().override(72, 72))
                     .into(binding.imgItemPhoto)
 
@@ -52,5 +55,4 @@ class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListVie
     override fun getItemCount(): Int {
         return mData.size
     }
-
 }

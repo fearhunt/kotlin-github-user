@@ -14,12 +14,18 @@ import java.lang.Exception
 class MainViewModel : ViewModel() {
     private val list: ArrayList<GithubUser> = arrayListOf()
 
-    val githubUsers = MutableLiveData<ArrayList<GithubUser>>()
+    private val githubUsers = MutableLiveData<ArrayList<GithubUser>>()
+    val isLoading = MutableLiveData<Boolean>()
+    val errorMessage = MutableLiveData<String>()
 
-    fun setUser(query: String, url: String) {
+    fun setUser(query: String) {
+        isLoading.postValue(true)
+
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token " + BuildConfig.API_KEY)
+        client.addHeader("Authorization", "token ${BuildConfig.API_KEY}")
         client.addHeader("User-Agent", "request")
+
+        val url = "https://api.github.com/search/users?q=$query"
 
         client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
@@ -28,12 +34,12 @@ class MainViewModel : ViewModel() {
                 val res = String(responseBody)
 
                 try {
-                    if (query != "") {
-                        val resObjSearch = JSONObject(res)
+                    val resObjSearch = JSONObject(res)
 
-                        val resArr = resObjSearch.getJSONArray("items")
-                        val resTotalCount = resObjSearch.getInt("total_count")
+                    val resArr = resObjSearch.getJSONArray("items")
+                    val resTotalCount = resObjSearch.getInt("total_count")
 
+                    if (resTotalCount > 0) {
                         for (i in 0 until resArr.length()) {
                             val resObj = resArr.getJSONObject(i)
 
@@ -43,15 +49,9 @@ class MainViewModel : ViewModel() {
                         }
                     }
                     else {
-                        val resArr = JSONArray(res)
-
-                        for (i in 0 until resArr.length()) {
-                            val resObj = resArr.getJSONObject(i)
-
-                            val username = resObj.getString("login")
-
-                            fetchGithubUserDataDetail(username, client, i, resArr.length())
-                        }
+                        Log.e("Error", "User not found")
+                        isLoading.postValue(false)
+                        errorMessage.postValue(query)
                     }
                 }
                 catch (e: Exception) {
@@ -83,10 +83,10 @@ class MainViewModel : ViewModel() {
 
                     githubUser.username = resObj.getString("login")
                     githubUser.email = resObj.getString("email")
-                    githubUser.avatar_url = resObj.getString("avatar_url")
+                    githubUser.avatarUrl = resObj.getString("avatar_url")
                     githubUser.company = if (resObj.getString("company") != "null") resObj.getString("company") else "-"
                     githubUser.location = if (resObj.getString("location") != "null") resObj.getString("location") else "-"
-                    githubUser.public_repos = resObj.getInt("public_repos")
+                    githubUser.publicRepos = resObj.getInt("public_repos")
                     githubUser.following = resObj.getInt("following")
                     githubUser.followers = resObj.getInt("followers")
 
@@ -94,6 +94,7 @@ class MainViewModel : ViewModel() {
 
                     if ((index + 1) == totalCount) {
                         githubUsers.postValue(list)
+                        isLoading.postValue(false)
                     }
                 }
                 catch (e: Exception) {
@@ -122,5 +123,7 @@ class MainViewModel : ViewModel() {
         }
 
         Log.e("Exception", errorMessage)
+        isLoading.postValue(false)
+        this.errorMessage.postValue(errorMessage)
     }
 }

@@ -10,8 +10,8 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
-            0 -> fragment = FollowersFragment.newInstance(username)
-            1 -> fragment = FollowingFragment.newInstance(username)
+            0 -> fragment = ConnectionFragment.newInstance(username, "followers")
+            1 -> fragment = ConnectionFragment.newInstance(username, "following")
         }
         return fragment as Fragment
     }

@@ -14,10 +14,14 @@
     <string name="repositories">repositories</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
-    <string name="followers_list">Followers List</string>
-    <string name="following_list">Following List</string>
+    <string name="followers_list">%s\'s Followers List</string>
+    <string name="following_list">%s\'s Following List</string>
     <string name="email">email</string>
     <string name="url">url</string>
     <string name="language_settings">Change Language Settings</string>
     <string name="search_hint">Search Github User Here</string>
+    <string name="welcome_text">Welcome to Github User App!</string>
+    <string name="instruction_text">Input username on search box to run this app</string>
+    <string name="user_not_found">User with name %s not found</string>
+    <string name="connection_list">Connection List</string>
 </resources>
