@@ -1,13 +1,14 @@
-package com.example.kotlingithubuser
+package com.example.kotlingithubuser.vm
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.kotlingithubuser.BuildConfig
+import com.example.kotlingithubuser.model.GithubUser
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
-import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
 

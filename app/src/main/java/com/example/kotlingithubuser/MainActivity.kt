@@ -10,11 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlingithubuser.adapter.ListGithubUserAdapter
 import com.example.kotlingithubuser.databinding.ActivityMainBinding
+import com.example.kotlingithubuser.vm.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ListGithubUserAdapter
@@ -54,7 +55,8 @@ class MainActivity : AppCompatActivity() {
         binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
         binding.rvGithubUsers.adapter = adapter
 
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
         mainViewModel.getUser().observe(this, Observer { githubUser ->
             if (githubUser != null) {
                 adapter.setData(githubUser)

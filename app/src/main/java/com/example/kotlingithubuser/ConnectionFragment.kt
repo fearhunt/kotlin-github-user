@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlingithubuser.adapter.ListGithubUserConnectionAdapter
 import com.example.kotlingithubuser.databinding.FragmentConnectionBinding
+import com.example.kotlingithubuser.vm.GithubUserConnectionViewModel
 
 class ConnectionFragment : Fragment() {
     private lateinit var adapter: ListGithubUserConnectionAdapter
@@ -53,7 +55,8 @@ class ConnectionFragment : Fragment() {
 
         adapter.clearData()
 
-        githubUserConnectionViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(GithubUserConnectionViewModel::class.java)
+        githubUserConnectionViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            GithubUserConnectionViewModel::class.java)
         githubUserConnectionViewModel.setUserConnection(username.toString(), connectionType.toString())
         githubUserConnectionViewModel.getUser().observe(this, Observer { githubUserConnection ->
             if (githubUserConnection != null) {

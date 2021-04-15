@@ -5,7 +5,9 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.kotlingithubuser.adapter.SectionsPagerAdapter
 import com.example.kotlingithubuser.databinding.ActivityGithubUserDetailBinding
+import com.example.kotlingithubuser.model.GithubUser
 import com.google.android.material.tabs.TabLayoutMediator
 
 class GithubUserDetailActivity : AppCompatActivity() {

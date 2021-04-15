@@ -1,4 +1,4 @@
-package com.example.kotlingithubuser
+package com.example.kotlingithubuser.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.kotlingithubuser.R
 import com.example.kotlingithubuser.databinding.ItemRowGithubUserConnectionBinding
+import com.example.kotlingithubuser.model.GithubUserConnection
 
 class ListGithubUserConnectionAdapter : RecyclerView.Adapter<ListGithubUserConnectionAdapter.ListViewHolder>() {
     private var mData = ArrayList<GithubUserConnection>()

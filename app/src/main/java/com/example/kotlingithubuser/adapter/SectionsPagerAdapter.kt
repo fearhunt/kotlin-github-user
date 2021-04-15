@@ -1,8 +1,9 @@
-package com.example.kotlingithubuser
+package com.example.kotlingithubuser.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.kotlingithubuser.ConnectionFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     private var username: String? = null

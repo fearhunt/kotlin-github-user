@@ -1,4 +1,4 @@
-package com.example.kotlingithubuser
+package com.example.kotlingithubuser.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.kotlingithubuser.GithubUserDetailActivity
+import com.example.kotlingithubuser.R
 import com.example.kotlingithubuser.databinding.ItemRowGithubUsersBinding
+import com.example.kotlingithubuser.model.GithubUser
 
 class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListViewHolder>() {
     private var mData = ArrayList<GithubUser>()

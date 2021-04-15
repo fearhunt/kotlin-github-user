@@ -1,4 +1,4 @@
-package com.example.kotlingithubuser
+package com.example.kotlingithubuser.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
