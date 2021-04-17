@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlingithubuser.BuildConfig
-import com.example.kotlingithubuser.model.GithubUser
+import com.example.kotlingithubuser.entity.GithubUser
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
 import java.lang.Exception
 
-class MainViewModel : ViewModel() {
+class MainViewModel() : ViewModel() {
     private val list: ArrayList<GithubUser> = arrayListOf()
 
     private val githubUsers = MutableLiveData<ArrayList<GithubUser>>()

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_change_settings"
-        android:title="@string/language_settings" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_change_settings"
+        android:icon="@drawable/ic_web_white"
+        android:title="@string/language_settings"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_user_favorite"
+        android:icon="@drawable/ic_heart"
+        android:title="@string/favorite_button"
+        app:showAsAction="always" />
 </menu>

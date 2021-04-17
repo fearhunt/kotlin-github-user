@@ -24,4 +24,7 @@
     <string name="instruction_text">Input username on search box to run this app</string>
     <string name="user_not_found">User with name %s not found</string>
     <string name="connection_list">Connection List</string>
+    <string name="favorite_button">Favorite Button</string>
+    <string name="added_favorite">User with %s added to favorite!</string>
+    <string name="deleted_favorite">User with name %s deleted from favorite</string>
 </resources>

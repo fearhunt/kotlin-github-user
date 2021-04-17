@@ -47,16 +47,13 @@ class ConnectionFragment : Fragment() {
         }
 
         binding.rvGithubUserConnection.setHasFixedSize(true)
-
         adapter = ListGithubUserConnectionAdapter()
-
         binding.rvGithubUserConnection.layoutManager = LinearLayoutManager(activity)
         binding.rvGithubUserConnection.adapter = adapter
 
         adapter.clearData()
 
-        githubUserConnectionViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            GithubUserConnectionViewModel::class.java)
+        githubUserConnectionViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(GithubUserConnectionViewModel::class.java)
         githubUserConnectionViewModel.setUserConnection(username.toString(), connectionType.toString())
         githubUserConnectionViewModel.getUser().observe(this, Observer { githubUserConnection ->
             if (githubUserConnection != null) {

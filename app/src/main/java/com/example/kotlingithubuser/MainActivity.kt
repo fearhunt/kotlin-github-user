@@ -1,5 +1,6 @@
 package com.example.kotlingithubuser
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     mainViewModel.setUser(query)
                 }
 
-                binding.svUser.clearFocus()
+                hideKeyboard(binding.root)
 
                 return true
             }
@@ -49,14 +51,11 @@ class MainActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.GONE
 
         binding.rvGithubUsers.setHasFixedSize(true)
-
         adapter = ListGithubUserAdapter()
-
         binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
         binding.rvGithubUsers.adapter = adapter
 
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         mainViewModel.getUser().observe(this, Observer { githubUser ->
             if (githubUser != null) {
                 adapter.setData(githubUser)
@@ -92,6 +91,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun hideKeyboard(view: View){
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
 
@@ -101,6 +105,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_change_settings) {
             val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(mIntent)
+        }
+        else if (item.itemId == R.id.action_user_favorite) {
+            val mIntent = Intent(this@MainActivity, GithubUserFavoriteActivity::class.java)
             startActivity(mIntent)
         }
 

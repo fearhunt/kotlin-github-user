@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.GithubUserDetailActivity
 import com.example.kotlingithubuser.R
 import com.example.kotlingithubuser.databinding.ItemRowGithubUsersBinding
-import com.example.kotlingithubuser.model.GithubUser
+import com.example.kotlingithubuser.entity.GithubUser
 
 class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListViewHolder>() {
     private var mData = ArrayList<GithubUser>()

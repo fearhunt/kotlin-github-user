@@ -24,4 +24,7 @@
     <string name="instruction_text">Masukkan nama user pada kolom pencarian untuk menjalankannya</string>
     <string name="user_not_found">User dengan query %s tidak ditemukan</string>
     <string name="connection_list">Daftar Koneksi</string>
+    <string name="favorite_button">Tombol Favorit</string>
+    <string name="added_favorite">User dengan nama %s berhasil ditambahkan ke favorit!</string>
+    <string name="deleted_favorite">User dengan nama %s dihapus dari favorit</string>
 </resources>
