@@ -1,6 +1,7 @@
 package com.example.kotlingithubuser
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,6 +59,7 @@ class ConnectionFragment : Fragment() {
         githubUserConnectionViewModel.getUser().observe(this, Observer { githubUserConnection ->
             if (githubUserConnection != null) {
                 adapter.setData(githubUserConnection)
+                Log.i("githubUserConnection", githubUserConnection.toString())
             }
         })
         githubUserConnectionViewModel.isLoading.observe(this, Observer { isLoading ->
@@ -72,19 +74,16 @@ class ConnectionFragment : Fragment() {
             var errorMessage: String = it
 
             if (errorMessage != "") {
-                if (!(it.contains(":"))) {
-                    errorMessage = getString(R.string.user_not_found, it)
-                }
+//                if (!(it.contains(":"))) {
+//                    errorMessage = getString(R.string.user_not_found, it)
+//                }
 
                 Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show()
             }
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return binding.root
     }
 

@@ -15,9 +15,9 @@ object DatabaseContract {
             const val AVATAR_URL = "avatar_url"
 
             val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
-                    .authority(AUTHORITY)
-                    .appendPath(TABLE_NAME)
-                    .build()
+                .authority(AUTHORITY)
+                .appendPath(TABLE_NAME)
+                .build()
         }
     }
 }
