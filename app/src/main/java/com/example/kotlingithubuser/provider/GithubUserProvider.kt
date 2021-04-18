@@ -15,6 +15,7 @@ class GithubUserProvider : ContentProvider() {
     companion object {
         private const val GITHUB_USER = 1
         private const val GITHUB_USER_ID = 2
+        private const val GITHUB_USER_USERNAME = 3
         private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
         private lateinit var githubUserHelper: GithubUserHelper
 
@@ -24,6 +25,9 @@ class GithubUserProvider : ContentProvider() {
 
             // content://com.example.kotlingithubuser/github_user/id
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", GITHUB_USER_ID)
+
+            // content://com.example.kotlingithubuser/github_user/username
+            sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", GITHUB_USER_USERNAME)
         }
     }
 
@@ -71,6 +75,7 @@ class GithubUserProvider : ContentProvider() {
         return when (sUriMatcher.match(uri)) {
             GITHUB_USER -> githubUserHelper.queryAll()
             GITHUB_USER_ID -> githubUserHelper.queryById(uri.lastPathSegment.toString())
+            GITHUB_USER_USERNAME -> githubUserHelper.queryByUsername(uri.lastPathSegment.toString())
             else -> null
         }
     }

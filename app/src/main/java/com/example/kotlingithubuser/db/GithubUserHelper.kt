@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.TABLE_NAME
+import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.USERNAME
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion._ID
 import java.sql.SQLException
 import kotlin.jvm.Throws
@@ -54,6 +55,19 @@ class GithubUserHelper(context: Context) {
             null,
             "$_ID = ?",
             arrayOf(id),
+            null,
+            null,
+            null,
+            null
+        )
+    }
+
+    fun queryByUsername(username: String): Cursor {
+        return database.query(
+            DATABASE_TABLE,
+            null,
+            "$USERNAME = ?",
+                arrayOf(username),
             null,
             null,
             null,

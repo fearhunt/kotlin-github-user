@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.adapter.SectionsPagerAdapter
@@ -15,10 +17,12 @@ import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Compan
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.CONTENT_URI
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.USERNAME
 import com.example.kotlingithubuser.entity.GithubUser
+import com.example.kotlingithubuser.vm.GithubUserDetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class GithubUserDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGithubUserDetailBinding
+    private lateinit var githubUserDetailViewModel: GithubUserDetailViewModel
     private lateinit var uriWithid: Uri
     private val githubUser by lazy {
         intent.getParcelableExtra<GithubUser>(EXTRA_GITHUB_USER) as GithubUser
@@ -28,8 +32,6 @@ class GithubUserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGithubUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val githubUser = intent.getParcelableExtra<GithubUser>(EXTRA_GITHUB_USER) as GithubUser
 
         supportActionBar?.title = githubUser.username + "'s Detail"
 
@@ -45,10 +47,6 @@ class GithubUserDetailActivity : AppCompatActivity() {
         binding.tvItemFollowing.text = (githubUser.following).toString()
         binding.tvItemRepositories.text = (githubUser.publicRepos).toString()
 
-        binding.fabFav.setOnClickListener {
-            addFavorite()
-        }
-
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         sectionsPagerAdapter.setUsername(githubUser.username)
         binding.viewPager.adapter = sectionsPagerAdapter
@@ -57,6 +55,20 @@ class GithubUserDetailActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+
+        githubUserDetailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(GithubUserDetailViewModel::class.java)
+        githubUserDetailViewModel.getUserFavorite().observe(this, Observer { isFavorite ->
+            if (!isFavorite) {
+                binding.fabFav.setOnClickListener {
+                    addFavorite()
+                }
+            }
+            else {
+                binding.fabFav.setOnClickListener {
+                    deleteFavorite()
+                }
+            }
+        })
     }
 
     private fun addFavorite() {
@@ -66,11 +78,11 @@ class GithubUserDetailActivity : AppCompatActivity() {
 
         contentResolver.insert(CONTENT_URI, values)
 
-        Toast.makeText(this, getString(R.string.added_favorite, "aw"), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.added_favorite, githubUser.username), Toast.LENGTH_LONG).show()
     }
 
     private fun deleteFavorite() {
-        Toast.makeText(this, getString(R.string.deleted_favorite, "ikh"), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.deleted_favorite, githubUser.username), Toast.LENGTH_LONG).show()
     }
 
     @SuppressLint("UseCompatLoadingForDrawables", "NewApi")
