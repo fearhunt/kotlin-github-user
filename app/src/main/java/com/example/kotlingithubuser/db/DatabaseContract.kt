@@ -12,6 +12,7 @@ object DatabaseContract {
             const val TABLE_NAME = "github_user"
             const val _ID = "_id"
             const val USERNAME = "username"
+            const val EMAIL = "email"
             const val AVATAR_URL = "avatar_url"
             const val COMPANY = "company"
             const val LOCATION = "location"

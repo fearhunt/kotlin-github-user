@@ -66,7 +66,7 @@ class GithubUserFavoriteActivity : AppCompatActivity() {
             }
 
             val userFavorite = deferredUserFavorite.await()
-            binding.progressBar.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.GONE
 
             if (userFavorite.size > 0) {
                 adapter.listUserFavorite = userFavorite

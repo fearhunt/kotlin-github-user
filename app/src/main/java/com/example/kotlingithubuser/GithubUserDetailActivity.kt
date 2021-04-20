@@ -39,6 +39,8 @@ class GithubUserDetailActivity : AppCompatActivity() {
 
         supportActionBar?.title = githubUser.username + "'s Detail"
 
+        Log.d("dataDetail", githubUser.toString())
+
         Glide.with(binding.imgItemPhoto)
             .load(githubUser.avatarUrl)
             .apply(RequestOptions().override(100, 100))
@@ -79,12 +81,14 @@ class GithubUserDetailActivity : AppCompatActivity() {
 
         contentResolver.registerContentObserver(GithubUserColumns.CONTENT_URI, true, myObserver)
 
-        setUriAndFavoriteStatus(githubUser.username)
+        val uriQuery = if (githubUser.id != 0) githubUser.id else githubUser.username
+        setUriAndFavoriteStatus(uriQuery.toString())
     }
 
     private fun addFavorite() {
         val values = ContentValues()
         values.put(GithubUserColumns.USERNAME, githubUser.username)
+        values.put(GithubUserColumns.EMAIL, githubUser.email)
         values.put(GithubUserColumns.AVATAR_URL, githubUser.avatarUrl)
         values.put(GithubUserColumns.COMPANY, githubUser.company)
         values.put(GithubUserColumns.LOCATION, githubUser.location)
@@ -125,7 +129,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUriAndFavoriteStatus(uriQuery: String? = githubUserFavorite?.id.toString()) {
+    private fun setUriAndFavoriteStatus(uriQuery: String?) {
         uriWithQuery = Uri.parse("${GithubUserColumns.CONTENT_URI}/$uriQuery")
         val cursor = contentResolver.query(uriWithQuery, null, null, null, null)
 

@@ -12,14 +12,15 @@ object MappingHelper {
             while(moveToNext()) {
                 val id = getInt(getColumnIndexOrThrow(GithubUserColumns._ID))
                 val username = getString(getColumnIndexOrThrow(GithubUserColumns.USERNAME))
+                val email = getString(getColumnIndexOrThrow(GithubUserColumns.EMAIL))
                 val avatarUrl = getString(getColumnIndexOrThrow(GithubUserColumns.AVATAR_URL))
                 val company = getString(getColumnIndexOrThrow(GithubUserColumns.COMPANY))
                 val location = getString(getColumnIndexOrThrow(GithubUserColumns.LOCATION))
-                val publicRepos = getString(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
+                val publicRepos = getInt(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
                 val following = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWING))
                 val followers = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWERS))
 
-                userFavoriteList.add(GithubUser(id, username, avatarUrl, company, location, publicRepos, following, followers))
+                userFavoriteList.add(GithubUser(id, username, email, avatarUrl, company, location, publicRepos, following, followers))
             }
         }
 
@@ -33,14 +34,15 @@ object MappingHelper {
             moveToFirst()
             val id = getInt(getColumnIndexOrThrow(GithubUserColumns._ID))
             val username = getString(getColumnIndexOrThrow(GithubUserColumns.USERNAME))
+            val email = getString(getColumnIndexOrThrow(GithubUserColumns.EMAIL))
             val avatarUrl = getString(getColumnIndexOrThrow(GithubUserColumns.AVATAR_URL))
             val company = getString(getColumnIndexOrThrow(GithubUserColumns.COMPANY))
             val location = getString(getColumnIndexOrThrow(GithubUserColumns.LOCATION))
-            val publicRepos = getString(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
+            val publicRepos = getInt(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
             val following = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWING))
             val followers = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWERS))
 
-            githubUser = GithubUser(id, username, avatarUrl, company, location, publicRepos, following, followers)
+            githubUser = GithubUser(id, username, email, avatarUrl, company, location, publicRepos, following, followers)
         }
 
         return githubUser
