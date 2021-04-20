@@ -15,7 +15,12 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
             "CREATE TABLE ${GithubUserColumns.TABLE_NAME}" +
             "(${GithubUserColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
             "${GithubUserColumns.USERNAME} TEXT NOT NULL," +
-            "${GithubUserColumns.AVATAR_URL} TEXT NOT NULL)"
+            "${GithubUserColumns.AVATAR_URL} TEXT NOT NULL," +
+            "${GithubUserColumns.COMPANY} TEXT NOT NULL," +
+            "${GithubUserColumns.LOCATION} TEXT NOT NULL," +
+            "${GithubUserColumns.PUBLIC_REPOS} TEXT NOT NULL," +
+            "${GithubUserColumns.FOLLOWING} TEXT NOT NULL," +
+            "${GithubUserColumns.FOLLOWERS} TEXT NOT NULL)"
     }
 
     override fun onCreate(db: SQLiteDatabase) {

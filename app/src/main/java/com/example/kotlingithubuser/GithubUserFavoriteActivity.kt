@@ -73,7 +73,7 @@ class GithubUserFavoriteActivity : AppCompatActivity() {
             }
             else {
                 adapter.listUserFavorite = ArrayList()
-                Toast.makeText(this@GithubUserFavoriteActivity, "no data", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@GithubUserFavoriteActivity, "No user favorite data", Toast.LENGTH_LONG).show()
             }
         }
     }

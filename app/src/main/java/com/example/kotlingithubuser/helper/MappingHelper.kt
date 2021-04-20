@@ -1,7 +1,7 @@
 package com.example.kotlingithubuser.helper
 
 import android.database.Cursor
-import com.example.kotlingithubuser.db.DatabaseContract
+import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns
 import com.example.kotlingithubuser.entity.GithubUser
 
 object MappingHelper {
@@ -10,11 +10,16 @@ object MappingHelper {
 
         userFavoriteCursor?.apply {
             while(moveToNext()) {
-                val id = getInt(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns._ID))
-                val username = getString(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns.USERNAME))
-                val avatarUrl = getString(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns.AVATAR_URL))
+                val id = getInt(getColumnIndexOrThrow(GithubUserColumns._ID))
+                val username = getString(getColumnIndexOrThrow(GithubUserColumns.USERNAME))
+                val avatarUrl = getString(getColumnIndexOrThrow(GithubUserColumns.AVATAR_URL))
+                val company = getString(getColumnIndexOrThrow(GithubUserColumns.COMPANY))
+                val location = getString(getColumnIndexOrThrow(GithubUserColumns.LOCATION))
+                val publicRepos = getString(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
+                val following = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWING))
+                val followers = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWERS))
 
-                userFavoriteList.add(GithubUser(id, username, avatarUrl))
+                userFavoriteList.add(GithubUser(id, username, avatarUrl, company, location, publicRepos, following, followers))
             }
         }
 
@@ -26,11 +31,16 @@ object MappingHelper {
 
         userFavoriteCursor?.apply {
             moveToFirst()
-            val id = getInt(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns._ID))
-            val username = getString(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns.USERNAME))
-            val avatarUrl = getString(getColumnIndexOrThrow(DatabaseContract.GithubUserColumns.AVATAR_URL))
+            val id = getInt(getColumnIndexOrThrow(GithubUserColumns._ID))
+            val username = getString(getColumnIndexOrThrow(GithubUserColumns.USERNAME))
+            val avatarUrl = getString(getColumnIndexOrThrow(GithubUserColumns.AVATAR_URL))
+            val company = getString(getColumnIndexOrThrow(GithubUserColumns.COMPANY))
+            val location = getString(getColumnIndexOrThrow(GithubUserColumns.LOCATION))
+            val publicRepos = getString(getColumnIndexOrThrow(GithubUserColumns.PUBLIC_REPOS))
+            val following = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWING))
+            val followers = getInt(getColumnIndexOrThrow(GithubUserColumns.FOLLOWERS))
 
-            githubUser = GithubUser(id, username, avatarUrl)
+            githubUser = GithubUser(id, username, avatarUrl, company, location, publicRepos, following, followers)
         }
 
         return githubUser

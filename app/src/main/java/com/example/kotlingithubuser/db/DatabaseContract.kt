@@ -13,11 +13,17 @@ object DatabaseContract {
             const val _ID = "_id"
             const val USERNAME = "username"
             const val AVATAR_URL = "avatar_url"
+            const val COMPANY = "company"
+            const val LOCATION = "location"
+            const val PUBLIC_REPOS = "public_repos"
+            const val FOLLOWING = "following"
+            const val FOLLOWERS = "followers"
+
 
             val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
-                .authority(AUTHORITY)
-                .appendPath(TABLE_NAME)
-                .build()
+                    .authority(AUTHORITY)
+                    .appendPath(TABLE_NAME)
+                    .build()
         }
     }
 }

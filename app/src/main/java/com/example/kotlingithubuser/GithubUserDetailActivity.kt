@@ -15,9 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.kotlingithubuser.adapter.SectionsPagerAdapter
 import com.example.kotlingithubuser.databinding.ActivityGithubUserDetailBinding
-import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.AVATAR_URL
-import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.CONTENT_URI
-import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.USERNAME
+import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns
 import com.example.kotlingithubuser.entity.GithubUser
 import com.example.kotlingithubuser.helper.MappingHelper
 import com.google.android.material.tabs.TabLayoutMediator
@@ -70,7 +68,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
             override fun onChange(self: Boolean) {
                 GlobalScope.launch(Dispatchers.Main) {
                     val deferredUserFavorite = async(Dispatchers.IO) {
-                        val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
+                        val cursor = contentResolver.query(GithubUserColumns.CONTENT_URI, null, null, null, null)
                         MappingHelper.mapCursorToArrayList(cursor)
                     }
 
@@ -79,17 +77,22 @@ class GithubUserDetailActivity : AppCompatActivity() {
             }
         }
 
-        contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
+        contentResolver.registerContentObserver(GithubUserColumns.CONTENT_URI, true, myObserver)
 
         setUriAndFavoriteStatus(githubUser.username)
     }
 
     private fun addFavorite() {
         val values = ContentValues()
-        values.put(USERNAME, githubUser.username)
-        values.put(AVATAR_URL, githubUser.avatarUrl)
+        values.put(GithubUserColumns.USERNAME, githubUser.username)
+        values.put(GithubUserColumns.AVATAR_URL, githubUser.avatarUrl)
+        values.put(GithubUserColumns.COMPANY, githubUser.company)
+        values.put(GithubUserColumns.LOCATION, githubUser.location)
+        values.put(GithubUserColumns.PUBLIC_REPOS, githubUser.publicRepos)
+        values.put(GithubUserColumns.FOLLOWING, githubUser.following)
+        values.put(GithubUserColumns.FOLLOWERS, githubUser.followers)
 
-        contentResolver.insert(CONTENT_URI, values)
+        contentResolver.insert(GithubUserColumns.CONTENT_URI, values)
 
         setUriAndFavoriteStatus(githubUser.username)
 
@@ -123,7 +126,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
     }
 
     private fun setUriAndFavoriteStatus(uriQuery: String? = githubUserFavorite?.id.toString()) {
-        uriWithQuery = Uri.parse("$CONTENT_URI/$uriQuery")
+        uriWithQuery = Uri.parse("${GithubUserColumns.CONTENT_URI}/$uriQuery")
         val cursor = contentResolver.query(uriWithQuery, null, null, null, null)
 
         if (cursor != null) {

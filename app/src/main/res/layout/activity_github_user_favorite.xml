@@ -24,5 +24,5 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintTop_toBottomOf="@id/progressBar"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_row_github_user_favorite" />
+        tools:listitem="@layout/item_row_github_users" />
 </androidx.constraintlayout.widget.ConstraintLayout>

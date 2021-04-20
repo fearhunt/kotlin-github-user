@@ -1,13 +1,15 @@
 package com.example.kotlingithubuser.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.kotlingithubuser.GithubUserDetailActivity
 import com.example.kotlingithubuser.R
-import com.example.kotlingithubuser.databinding.ItemRowGithubUserFavoriteBinding
+import com.example.kotlingithubuser.databinding.ItemRowGithubUsersBinding
 import com.example.kotlingithubuser.entity.GithubUser
 
 class ListGithubUserFavoriteAdapter : RecyclerView.Adapter<ListGithubUserFavoriteAdapter.ListViewHolder>() {
@@ -38,21 +40,29 @@ class ListGithubUserFavoriteAdapter : RecyclerView.Adapter<ListGithubUserFavorit
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemRowGithubUserFavoriteBinding.bind(itemView)
+        private val binding = ItemRowGithubUsersBinding.bind(itemView)
 
         fun bind(userFavorite: GithubUser) {
-            Glide.with(binding.imgItemPhoto)
-                .load(userFavorite.avatarUrl)
-                .apply(RequestOptions().override(72, 72))
-                .into(binding.imgItemPhoto)
+            with(itemView) {
+                Glide.with(context)
+                        .load(userFavorite.avatarUrl)
+                        .apply(RequestOptions().override(72, 72))
+                        .into(binding.imgItemPhoto)
 
-            binding.tvItemUsername.text = userFavorite.username
-            // More detail
+                binding.tvItemUsername.text = userFavorite.username
+                binding.tvItemLocation.text = userFavorite.location
+                binding.tvItemCompany.text = userFavorite.company
+                binding.btnItemDetails.setOnClickListener {
+                    val intent = Intent(context, GithubUserDetailActivity::class.java)
+                    intent.putExtra(GithubUserDetailActivity.EXTRA_GITHUB_USER, userFavorite)
+                    context.startActivity(intent)
+                }
+            }
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): ListViewHolder {
-        val mView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row_github_user_favorite, viewGroup, false)
+        val mView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row_github_users, viewGroup, false)
         return ListViewHolder(mView)
     }
 
