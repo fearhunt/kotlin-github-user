@@ -62,8 +62,12 @@ class GithubUserProvider : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        val deleted: Int = when (GITHUB_USER_ID) {
-            sUriMatcher.match(uri) -> githubUserHelper.deleteById(uri.lastPathSegment.toString())
+        Log.d("sStatusUriCode", "${sUriMatcher.match(uri)} $uri")
+        Log.d("lastPathSegment", uri.lastPathSegment.toString())
+
+        val deleted: Int = when (sUriMatcher.match(uri)) {
+            GITHUB_USER_ID -> githubUserHelper.deleteById(uri.lastPathSegment.toString())
+            GITHUB_USER_USERNAME -> githubUserHelper.deleteByUsername(uri.lastPathSegment.toString())
             else -> 0
         }
 

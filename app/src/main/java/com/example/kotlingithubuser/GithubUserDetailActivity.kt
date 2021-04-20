@@ -99,7 +99,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
     private fun deleteFavorite() {
         contentResolver.delete(uriWithQuery, null, null)
 
-        setUriAndFavoriteStatus()
+        setUriAndFavoriteStatus(githubUser.username)
 
         Toast.makeText(this, getString(R.string.deleted_favorite, githubUser.username), Toast.LENGTH_LONG).show()
     }
