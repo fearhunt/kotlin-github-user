@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.TABLE_NAME
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.USERNAME
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion._ID
@@ -37,6 +38,8 @@ class GithubUserHelper(context: Context) {
     }
 
     fun queryAll(): Cursor {
+        Log.d("helperMode", "Query All Database")
+
         return database.query(
             DATABASE_TABLE,
             null,
@@ -50,6 +53,8 @@ class GithubUserHelper(context: Context) {
     }
 
     fun queryById(id: String): Cursor {
+        Log.d("helperMode", "Query by ID $id")
+
         return database.query(
             DATABASE_TABLE,
             null,
@@ -63,6 +68,8 @@ class GithubUserHelper(context: Context) {
     }
 
     fun queryByUsername(username: String): Cursor {
+        Log.d("helperMode", "Query by username $username")
+
         return database.query(
             DATABASE_TABLE,
             null,
@@ -76,6 +83,8 @@ class GithubUserHelper(context: Context) {
     }
 
     fun insert(values: ContentValues?): Long {
+        Log.d("helperMode", "Insert with data $values")
+
         return database.insert(DATABASE_TABLE, null, values)
     }
 

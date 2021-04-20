@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 import com.example.kotlingithubuser.db.DatabaseContract.AUTHORITY
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.CONTENT_URI
 import com.example.kotlingithubuser.db.DatabaseContract.GithubUserColumns.Companion.TABLE_NAME
@@ -27,7 +28,7 @@ class GithubUserProvider : ContentProvider() {
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", GITHUB_USER_ID)
 
             // content://com.example.kotlingithubuser/github_user/username
-            sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", GITHUB_USER_USERNAME)
+            sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/*", GITHUB_USER_USERNAME)
         }
     }
 
@@ -72,6 +73,9 @@ class GithubUserProvider : ContentProvider() {
     }
 
     override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
+        Log.d("sStatusUriCode", "${sUriMatcher.match(uri)} $uri")
+        Log.d("lastPathSegment", uri.lastPathSegment.toString())
+
         return when (sUriMatcher.match(uri)) {
             GITHUB_USER -> githubUserHelper.queryAll()
             GITHUB_USER_ID -> githubUserHelper.queryById(uri.lastPathSegment.toString())
