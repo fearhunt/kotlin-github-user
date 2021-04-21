@@ -32,4 +32,5 @@
     <string name="learn_more_settings">Pelajari Lebih Lanjut di Dicoding</string>
     <string name="notification_instruction">Aplikasi ini akan memberikan pengingat untuk membuka aplikasi pada jam 09.00. Anda dapat mengaturnya dengan menekan tombol di sini</string>
     <string name="notification_message">Kunjungi Github User App untuk terhubung dengan developer di seluruh dunia!</string>
+    <string name="key_notification">notifikasi</string>
 </resources>

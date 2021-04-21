@@ -32,4 +32,5 @@
     <string name="learn_more_settings">Learn More on Dicoding</string>
     <string name="notification_instruction">This app will remind you to open app on 09.00 AM. You can adjust this notification by toggle button here</string>
     <string name="notification_message">See Github User App to connect with developer all around the world!</string>
+    <string name="key_notification">notification</string>
 </resources>

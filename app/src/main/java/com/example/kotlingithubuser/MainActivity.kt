@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
         mainViewModel.errorMessage.observe(this, Observer {
-            var errorMessage: String = it
+            val errorMessage: String = it
 
             if (errorMessage != "") {
                 if (!(it.contains(":"))) {

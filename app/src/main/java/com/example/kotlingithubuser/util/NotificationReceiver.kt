@@ -71,7 +71,7 @@ class NotificationReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, ID_ALARM, intent, 0)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
 
-        Toast.makeText(context, "Notification set active", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Notification set active", Toast.LENGTH_SHORT).show()
     }
 
     fun cancelNotification(context: Context) {
@@ -82,7 +82,7 @@ class NotificationReceiver : BroadcastReceiver() {
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
 
-        Toast.makeText(context, "Notification turned off", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Notification turned off", Toast.LENGTH_SHORT).show()
     }
 
     companion object {
