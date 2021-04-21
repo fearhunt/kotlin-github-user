@@ -75,6 +75,13 @@ class NotificationReceiver : BroadcastReceiver() {
     }
 
     fun cancelNotification(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_ALARM, intent, 0)
+
+        pendingIntent.cancel()
+        alarmManager.cancel(pendingIntent)
+
         Toast.makeText(context, "Notification turned off", Toast.LENGTH_LONG).show()
     }
 
