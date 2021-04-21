@@ -12,6 +12,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.example.kotlingithubuser.MainActivity
 import com.example.kotlingithubuser.R
 import java.util.*
 
@@ -27,12 +28,16 @@ class NotificationReceiver : BroadcastReceiver() {
         val channelId = "Channel_1"
         val channelName = "$title channel"
 
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
         val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.github)
             .setContentTitle(title)
             .setContentText(message)
+            .setContentIntent(pendingIntent)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setSound(alarmSound)
@@ -64,7 +69,7 @@ class NotificationReceiver : BroadcastReceiver() {
         calendar.set(Calendar.SECOND, 0)
 
         val pendingIntent = PendingIntent.getBroadcast(context, ID_ALARM, intent, 0)
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
 
         Toast.makeText(context, "Notification set active", Toast.LENGTH_LONG).show()
     }

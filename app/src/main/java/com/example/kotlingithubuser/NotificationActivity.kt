@@ -24,7 +24,7 @@ class NotificationActivity : AppCompatActivity() {
 
             if (isChecked) {
                 // For testing
-                notificationReceiver.setNotification(this, "16:55")
+                notificationReceiver.setNotification(this, "17:06")
             }
             else {
 
