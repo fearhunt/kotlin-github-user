@@ -28,4 +28,8 @@
     <string name="added_favorite">User dengan nama %s berhasil ditambahkan ke favorit!</string>
     <string name="deleted_favorite">User dengan nama %s dihapus dari favorit</string>
     <string name="user_favorite_not_found">Oops! User favorit tidak ditemukan. Anda dapat menambahkannya di halaman profil user</string>
+    <string name="set_notification_settings">Atur Notifikasi</string>
+    <string name="learn_more_settings">Pelajari Lebih Lanjut di Dicoding</string>
+    <string name="notification_instruction">Aplikasi ini akan memberikan pengingat untuk membuka aplikasi pada jam 09.00. Anda dapat mengaturnya dengan menekan tombol di sini</string>
+    <string name="notification_message">Kunjungi Github User App untuk terhubung dengan developer di seluruh dunia!</string>
 </resources>

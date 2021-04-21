@@ -110,13 +110,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_change_settings) {
-            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(mIntent)
-        }
-        else if (item.itemId == R.id.action_user_favorite) {
-            val mIntent = Intent(this@MainActivity, GithubUserFavoriteActivity::class.java)
-            startActivity(mIntent)
+        when (item.itemId) {
+            R.id.action_notification -> {
+                val mIntent = Intent(this@MainActivity, NotificationActivity::class.java)
+                startActivity(mIntent)
+            }
+            R.id.action_user_favorite -> {
+                val mIntent = Intent(this@MainActivity, GithubUserFavoriteActivity::class.java)
+                startActivity(mIntent)
+            }
+            R.id.action_change_settings -> {
+                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(mIntent)
+            }
+            R.id.action_learn_more -> {
+                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(mIntent)
+            }
         }
 
         return super.onOptionsItemSelected(item)

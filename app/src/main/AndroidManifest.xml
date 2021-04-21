@@ -3,6 +3,8 @@
     package="com.example.kotlingithubuser">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
         android:name="com.example.kotlingithubuser.READ_DATABASE"
@@ -18,6 +20,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinGithubUser">
+        <receiver
+            android:name=".util.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <provider
             android:name=".provider.GithubUserProvider"
             android:authorities="com.example.kotlingithubuser"
@@ -35,17 +42,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop" />
-
         <activity
             android:name=".GithubUserDetailActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".GithubUserFavoriteActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".NotificationActivity"
             android:parentActivityName=".MainActivity" />
     </application>
 

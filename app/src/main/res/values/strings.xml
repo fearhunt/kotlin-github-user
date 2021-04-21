@@ -28,4 +28,8 @@
     <string name="added_favorite">User with name %s added to favorite!</string>
     <string name="deleted_favorite">User with name %s deleted from favorite</string>
     <string name="user_favorite_not_found">Oops! There are no user favorite, yet. You can add user favorite within user profile</string>
+    <string name="set_notification_settings">Set Notification</string>
+    <string name="learn_more_settings">Learn More on Dicoding</string>
+    <string name="notification_instruction">This app will remind you to open app on 09.00 AM. You can adjust this notification by toggle button here</string>
+    <string name="notification_message">See Github User App to connect with developer all around the world!</string>
 </resources>

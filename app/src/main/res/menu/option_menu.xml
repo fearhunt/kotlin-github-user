@@ -2,13 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_change_settings"
-        android:icon="@drawable/ic_web_white"
-        android:title="@string/language_settings"
+        android:id="@+id/action_notification"
+        android:icon="@drawable/ic_bell_white"
+        android:title="@string/set_notification_settings"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_user_favorite"
         android:icon="@drawable/ic_heart"
         android:title="@string/favorite_button"
         app:showAsAction="always" />
+    <group android:id="@+id/menu_settings">
+        <item
+            android:id="@+id/action_change_settings"
+            android:title="@string/language_settings" />
+        <item
+            android:id="@+id/action_learn_more"
+            android:title="@string/learn_more_settings" />
+    </group>
 </menu>
