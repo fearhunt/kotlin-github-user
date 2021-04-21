@@ -12,4 +12,5 @@
     <string name="user_repositories">0</string>
     <string name="repositories">repositories</string>
     <string name="email">email</string>
+    <string name="user_favorite_not_found">Oops! There are no user favorite, yet. You can add user favorite within user profile</string>
 </resources>

@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.consumerapp.adapter.ListGithubUserAdapter
 import com.example.consumerapp.databinding.ActivityMainBinding
@@ -29,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Consumer App User Favorite"
+
+        binding.tvUserFavoriteNotFound.visibility = View.GONE
 
         binding.rvGithubUsers.layoutManager = LinearLayoutManager(this)
         binding.rvGithubUsers.setHasFixedSize(true)
@@ -70,12 +70,12 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
 
             if (userFavorite.size > 0) {
+                binding.tvUserFavoriteNotFound.visibility = View.GONE
                 adapter.listUserFavorite = userFavorite
-                Log.d("userFavorite", userFavorite.toString())
             }
             else {
+                binding.tvUserFavoriteNotFound.visibility = View.VISIBLE
                 adapter.listUserFavorite = ArrayList()
-                Toast.makeText(this@MainActivity, "No user favorite data", Toast.LENGTH_LONG).show()
             }
         }
     }

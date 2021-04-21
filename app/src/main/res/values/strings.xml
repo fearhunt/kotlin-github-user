@@ -27,4 +27,5 @@
     <string name="favorite_button">Favorite Button</string>
     <string name="added_favorite">User with name %s added to favorite!</string>
     <string name="deleted_favorite">User with name %s deleted from favorite</string>
+    <string name="user_favorite_not_found">Oops! There are no user favorite, yet. You can add user favorite within user profile</string>
 </resources>

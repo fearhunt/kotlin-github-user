@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.progressBar.visibility = View.GONE
+        binding.horizontalRule.visibility = View.GONE
+        binding.tvUserNotFound.visibility = View.GONE
 
         binding.rvGithubUsers.setHasFixedSize(true)
         adapter = ListGithubUserAdapter()
@@ -75,10 +77,13 @@ class MainActivity : AppCompatActivity() {
 
             if (errorMessage != "") {
                 if (!(it.contains(":"))) {
-                    errorMessage = getString(R.string.user_not_found, it)
+                    binding.horizontalRule.visibility = View.VISIBLE
+                    binding.tvUserNotFound.visibility = View.VISIBLE
+                    binding.tvUserNotFound.text = getString(R.string.user_not_found, it)
                 }
-
-                Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
+                else {
+                    Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
+                }
             }
         })
     }
@@ -86,6 +91,8 @@ class MainActivity : AppCompatActivity() {
     private fun showLoading(state: Boolean) {
         if (state) {
             binding.progressBar.visibility = View.VISIBLE
+            binding.horizontalRule.visibility = View.GONE
+            binding.tvUserNotFound.visibility = View.GONE
         } else {
             binding.progressBar.visibility = View.GONE
         }

@@ -17,12 +17,25 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:id="@+id/tv_user_favorite_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center_horizontal"
+        android:layout_marginVertical="12dp"
+        android:paddingHorizontal="12dp"
+        android:textSize="20sp"
+        android:text="@string/user_favorite_not_found" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_github_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_favorite_not_found"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_row_github_users" />
 </androidx.constraintlayout.widget.ConstraintLayout>

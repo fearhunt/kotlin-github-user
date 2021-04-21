@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlingithubuser.adapter.ListGithubUserFavoriteAdapter
 import com.example.kotlingithubuser.databinding.ActivityGithubUserFavoriteBinding
@@ -28,6 +27,8 @@ class GithubUserFavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Github User Favorite"
+
+        binding.tvUserFavoriteNotFound.visibility = View.GONE
 
         binding.rvGithubUserFavorite.layoutManager = LinearLayoutManager(this)
         binding.rvGithubUserFavorite.setHasFixedSize(true)
@@ -69,11 +70,12 @@ class GithubUserFavoriteActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
 
             if (userFavorite.size > 0) {
+                binding.tvUserFavoriteNotFound.visibility = View.GONE
                 adapter.listUserFavorite = userFavorite
             }
             else {
-                adapter.listUserFavorite = userFavorite
-                Toast.makeText(this@GithubUserFavoriteActivity, "No user favorite data", Toast.LENGTH_LONG).show()
+                binding.tvUserFavoriteNotFound.visibility = View.VISIBLE
+                adapter.listUserFavorite = ArrayList()
             }
         }
     }

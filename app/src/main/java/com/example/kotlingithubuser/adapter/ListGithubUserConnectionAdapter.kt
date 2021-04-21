@@ -29,7 +29,7 @@ class ListGithubUserConnectionAdapter : RecyclerView.Adapter<ListGithubUserConne
             with(itemView) {
                 Glide.with(context)
                     .load(githubUserConnection.avatarUrl)
-                    .apply(RequestOptions().override(48, 48))
+                    .apply(RequestOptions().override(128, 128))
                     .into(binding.imgItemPhoto)
 
                 binding.tvItemUsername.text = githubUserConnection.username

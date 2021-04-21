@@ -31,7 +31,7 @@ class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListVie
             with(itemView) {
                 Glide.with(context)
                     .load(githubUser.avatarUrl)
-                    .apply(RequestOptions().override(72, 72))
+                    .apply(RequestOptions().override(128, 128))
                     .into(binding.imgItemPhoto)
 
                 binding.tvItemUsername.text = githubUser.username

@@ -48,6 +48,8 @@ class MainViewModel() : ViewModel() {
 
                             fetchGithubUserDataDetail(username, client, i, resTotalCount)
                         }
+
+                        errorMessage.postValue("")
                     }
                     else {
                         Log.e("Error", "User not found")

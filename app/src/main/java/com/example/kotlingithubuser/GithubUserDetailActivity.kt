@@ -43,7 +43,7 @@ class GithubUserDetailActivity : AppCompatActivity() {
 
         Glide.with(binding.imgItemPhoto)
             .load(githubUser.avatarUrl)
-            .apply(RequestOptions().override(100, 100))
+            .apply(RequestOptions().override(256, 256))
             .into(binding.imgItemPhoto)
 
         binding.tvItemUsername.text = githubUser.username

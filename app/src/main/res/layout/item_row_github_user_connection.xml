@@ -64,7 +64,6 @@
             app:layout_constraintTop_toTopOf="@id/tv_item_repositories"
             app:layout_constraintBottom_toBottomOf="@id/tv_item_repositories"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
             android:src="@drawable/ic_repository"
             tools:ignore="ContentDescription" />
 
@@ -74,12 +73,11 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_item_username"
             app:layout_constraintStart_toEndOf="@id/img_ic_repository"
-            android:textSize="10sp"
+            android:textSize="12sp"
             style="@style/Link"
             android:layout_marginLeft="2dp"
             android:layout_marginStart="2dp"
-            android:text="@string/repositories"
-            tools:ignore="SmallSp" />
+            android:text="@string/repositories" />
 
         <ImageView
             android:id="@+id/img_ic_web"
@@ -102,12 +100,11 @@
             app:layout_constraintTop_toBottomOf="@id/tv_item_repositories"
             app:layout_constraintBottom_toTopOf="@id/horizontalRule"
             app:layout_constraintStart_toEndOf="@id/img_ic_web"
-            android:textSize="10sp"
+            android:textSize="12sp"
             style="@style/Link"
             android:layout_marginLeft="2dp"
             android:layout_marginStart="2dp"
-            android:text="@string/url"
-            tools:ignore="SmallSp" />
+            android:text="@string/url" />
 
         <View
             android:id="@+id/horizontalRule"

@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">Kotlin Github User</string>
+    <string name="app_name">Consumer App</string>
     <string name="username">nama pengguna</string>
     <string name="location">lokasi</string>
     <string name="company">perusahaan</string>
-    <string name="more_details">Lebih Detail</string>
     <string name="name">nama</string>
     <string name="dot">•</string>
     <string name="user_followers">0</string>
@@ -12,19 +11,6 @@
     <string name="following">mengikuti</string>
     <string name="user_repositories">0</string>
     <string name="repositories">repositori</string>
-    <string name="tab_text_1">Pengikut</string>
-    <string name="tab_text_2">Mengikuti</string>
-    <string name="followers_list">Daftar Pengikut %s</string>
-    <string name="following_list">Daftar Mengikuti %s</string>
     <string name="email">email</string>
-    <string name="url">url</string>
-    <string name="language_settings">Ubah Bahasa</string>
-    <string name="search_hint">Cari Pengguna Github di sini</string>
-    <string name="welcome_text">Selamat Datang di Aplikasi Github User App!</string>
-    <string name="instruction_text">Masukkan nama user pada kolom pencarian untuk menjalankannya</string>
-    <string name="user_not_found">User dengan query %s tidak ditemukan</string>
-    <string name="connection_list">Daftar Koneksi</string>
-    <string name="favorite_button">Tombol Favorit</string>
-    <string name="added_favorite">User dengan nama %s berhasil ditambahkan ke favorit!</string>
-    <string name="deleted_favorite">User dengan nama %s dihapus dari favorit</string>
+    <string name="user_favorite_not_found">Oops! User favorit tidak ditemukan. Anda dapat menambahkannya di halaman profil user</string>
 </resources>
