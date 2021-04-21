@@ -13,10 +13,7 @@ import com.example.consumerapp.entity.GithubUser
 class ListGithubUserAdapter : RecyclerView.Adapter<ListGithubUserAdapter.ListViewHolder>() {
     var listUserFavorite = ArrayList<GithubUser>()
         set(listUserFavorite) {
-            if (listUserFavorite.size > 0) {
-                this.listUserFavorite.clear()
-            }
-
+            this.listUserFavorite.clear()
             this.listUserFavorite.addAll(listUserFavorite)
             notifyDataSetChanged()
         }

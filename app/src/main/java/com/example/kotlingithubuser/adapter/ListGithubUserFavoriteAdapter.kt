@@ -15,10 +15,7 @@ import com.example.kotlingithubuser.entity.GithubUser
 class ListGithubUserFavoriteAdapter : RecyclerView.Adapter<ListGithubUserFavoriteAdapter.ListViewHolder>() {
     var listUserFavorite = ArrayList<GithubUser>()
         set(listUserFavorite) {
-            if (listUserFavorite.size > 0) {
-                this.listUserFavorite.clear()
-            }
-
+            this.listUserFavorite.clear()
             this.listUserFavorite.addAll(listUserFavorite)
             notifyDataSetChanged()
         }
