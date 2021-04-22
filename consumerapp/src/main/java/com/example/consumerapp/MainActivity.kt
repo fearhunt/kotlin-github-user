@@ -59,15 +59,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadGithubUserFavoriteAsync() {
         GlobalScope.launch(Dispatchers.Main) {
-            binding.progressBar.visibility = View.VISIBLE
-
             val deferredUserFavorite = async(Dispatchers.IO) {
                 val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
 
             val userFavorite = deferredUserFavorite.await()
-            binding.progressBar.visibility = View.GONE
 
             if (userFavorite.size > 0) {
                 binding.tvUserFavoriteNotFound.visibility = View.GONE

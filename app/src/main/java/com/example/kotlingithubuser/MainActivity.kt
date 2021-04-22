@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(mIntent)
             }
             R.id.action_learn_more -> {
-                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                val mIntent = Intent(this@MainActivity, LearnActivity::class.java)
                 startActivity(mIntent)
             }
         }

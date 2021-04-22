@@ -54,6 +54,9 @@
         <activity
             android:name=".NotificationActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LearnActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
