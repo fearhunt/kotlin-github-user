@@ -12,7 +12,7 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
 import java.lang.Exception
 
-class MainViewModel() : ViewModel() {
+class MainViewModel : ViewModel() {
     private val list: ArrayList<GithubUser> = arrayListOf()
 
     private val githubUsers = MutableLiveData<ArrayList<GithubUser>>()

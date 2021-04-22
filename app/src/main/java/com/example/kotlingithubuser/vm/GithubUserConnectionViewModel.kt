@@ -40,12 +40,12 @@ class GithubUserConnectionViewModel : ViewModel() {
                     for (i in 0 until resArr.length()) {
                         val resObj = resArr.getJSONObject(i)
 
-                        val githubUserConnection = GithubUserConnection()
-
-                        githubUserConnection.username = resObj.getString("login")
-                        githubUserConnection.reposUrl = resObj.getString("repos_url")
-                        githubUserConnection.avatarUrl = resObj.getString("avatar_url")
-                        githubUserConnection.htmlUrl = resObj.getString("html_url")
+                        val githubUserConnection = GithubUserConnection(
+                            username = resObj.getString("login"),
+                            reposUrl = resObj.getString("repos_url"),
+                            avatarUrl = resObj.getString("avatar_url"),
+                            htmlUrl = resObj.getString("html_url")
+                        )
 
                         list.add(githubUserConnection)
                     }

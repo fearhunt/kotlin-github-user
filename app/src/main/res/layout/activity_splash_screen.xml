@@ -10,11 +10,10 @@
             android:id="@+id/SplashScreenImage"
             android:layout_width="256dp"
             android:layout_height="256dp"
-            android:scaleType="fitXY"
             android:src="@drawable/github"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/app_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
